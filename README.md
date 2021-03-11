@@ -6,11 +6,11 @@ A simple flutter countdown timer App. This App has been developed as a part of #
 - Change to the "countdown_timer" directory and then execute: Flutter run
 
 #### Screenshots
-![App_Run](screenshots/Screenshot_01.gif)
-![Set Countdown_Timer_Screen](screenshots/Screenshot_02.png)
-![Counting_Down_Screen_1](screenshots/Screenshot_03.png)
-![Counting_Down_Screen_2](screenshots/Screenshot_04.png)
-![Counting_Down_Donne_Screen](screenshots/Screenshot_05.png)
+![App_Run](screenshots/Screenshot_01.gif){:height="33%" width="33%"}
+![Set Countdown_Timer_Screen](screenshots/Screenshot_02.png){:height="33%" width="33%"}
+![Counting_Down_Screen_1](screenshots/Screenshot_03.png){:height="33%" width="33%"}
+![Counting_Down_Screen_2](screenshots/Screenshot_04.png){:height="33%" width="33%"}
+![Counting_Down_Donne_Screen](screenshots/Screenshot_05.png){:height="33%" width="33%"}
 
 #### License
 The source is available under the MIT license; kindly see the LICENSE file for details.
