@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -40,14 +40,14 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  Timer _countdownTimer; // Countdown Timer
+  Timer? _countdownTimer; // Countdown Timer
   TimerStatus _timerStatue = TimerStatus.set; // The timer's current  Status
   Duration _timerDuration = const Duration(
       hours: 0,
@@ -68,12 +68,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       Icons.restore; // The left control button's icon (Restore)
 
   // Start the countdown timer
-  void _startCountdownTimer({int seconds}) {
+  void _startCountdownTimer({int? seconds}) {
     const oneSecondPeriod = const Duration(seconds: 1);
 
     // Check the null safety of the "_countdownTimer", then Check if it is active!
-    if ((_countdownTimer != null) && (_countdownTimer.isActive)) {
-      _countdownTimer.cancel(); // Cancel/stop the countdown timer
+    if ((_countdownTimer != null) && (_countdownTimer!.isActive)) {
+      _countdownTimer!.cancel(); // Cancel/stop the countdown timer
     }
 
     // Creates a new repeating timer
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   // Return the provided duration as a string hh:mm:ss/00:03:00
-  String _durationAsString({Duration duration}) {
+  String _durationAsString({required Duration duration}) {
     String twoDigitHours = _twoDigits(number: duration.inHours); // Hours
     String twoDigitMinutes =
         _twoDigits(number: duration.inMinutes.remainder(60)); // Minutes
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   // Return two digits of provided number (as string)
-  String _twoDigits({int number}) {
+  String _twoDigits({int? number}) {
     return number.toString().padLeft(2, '0');
   }
 
@@ -177,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   void dispose() {
     //cancel the countdown timer before disposing the screen
-    _countdownTimer.cancel();
+    _countdownTimer!.cancel();
     super.dispose();
   }
 
@@ -203,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
