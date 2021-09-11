@@ -19,10 +19,10 @@ const TextStyle countdownDurationTextStyle = TextStyle(
 const TextStyle elevatedButtonTextStyle = TextStyle(color: Colors.white);
 
 // Circular progress indicator startup color
-const Color CircularProgressIndicatorStartupColor = Colors.blueGrey;
+const Color circularProgressIndicatorStartupColor = Colors.blueGrey;
 // Circular progress indicator head color
-const Color CircularProgressIndicatorHeadColor = Colors.red;
+const Color circularProgressIndicatorHeadColor = Colors.red;
 // Circular progress indicator value color
-const Color CircularProgressIndicatorValueColor = Colors.orange;
+const Color circularProgressIndicatorValueColor = Colors.orange;
 // Circular progress indicator done (complete) color
-const Color CircularProgressIndicatorDoneColor = Colors.green;
+const Color circularProgressIndicatorDoneColor = Colors.green;

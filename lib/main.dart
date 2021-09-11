@@ -12,10 +12,12 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Set the preferred orientations
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown]);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
@@ -23,13 +25,13 @@ class MyApp extends StatelessWidget {
       title: appTitle, // Set the App title
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: MyHomePage(title: appTitle), // Set the App home page title
+      home: const MyHomePage(title: appTitle), // Set the App home page title
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -62,14 +64,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       'Start'; // The left control button's text: 'Start' -> 'Pause' -> 'Resume'
   IconData _leftControlButtonIcon =
       Icons.play_arrow; // The left control button's icon (Play Arrow)
-  String _rightControlButtonText =
+  final String _rightControlButtonText =
       'Set Timer'; // The right control button's text: 'Set Timer'
-  IconData _rightControlButtonIcon =
+  final IconData _rightControlButtonIcon =
       Icons.restore; // The left control button's icon (Restore)
 
   // Start the countdown timer
   void _startCountdownTimer({int? seconds}) {
-    const oneSecondPeriod = const Duration(seconds: 1);
+    const oneSecondPeriod = Duration(seconds: 1);
 
     // Check the null safety of the "_countdownTimer", then Check if it is active!
     if ((_countdownTimer != null) && (_countdownTimer!.isActive)) {
@@ -77,11 +79,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     }
 
     // Creates a new repeating timer
-    _countdownTimer = new Timer.periodic(
+    _countdownTimer = Timer.periodic(
       oneSecondPeriod,
       (Timer timer) {
         // Check if the timer is already started
-        if (_timerStatue == TimerStatus.started)
+        if (_timerStatue == TimerStatus.started) {
           setState(() {
             // Update the UI
             _restTimerDurationInSeconds--; // Update the rest duration value
@@ -90,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     seconds:
                         _restTimerDurationInSeconds)); // Get the rest duration as formatted string (hh:mm:ss/00:03:00)
           });
+        }
 
         // Check if counting down is finished (done)
         if (_restTimerDurationInSeconds == 0) {
@@ -237,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       ),
                       child: Center(
                         child: Text(
-                          '$_countdownTimerDurationAsString',
+                          _countdownTimerDurationAsString,
                           style: countdownDurationTextStyle,
                         ),
                       ),
@@ -253,9 +256,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         child: CircularProgressIndicator(
                           strokeWidth: 24,
                           backgroundColor:
-                              CircularProgressIndicatorStartupColor,
-                          valueColor: new AlwaysStoppedAnimation<Color>(
-                              CircularProgressIndicatorHeadColor),
+                              circularProgressIndicatorStartupColor,
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                              circularProgressIndicatorHeadColor),
                           value: 1 -
                               (_restTimerDurationInSeconds /
                                   _timerDuration.inSeconds) +
@@ -276,10 +279,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           value: 1 -
                               (_restTimerDurationInSeconds /
                                   _timerDuration.inSeconds),
-                          valueColor: new AlwaysStoppedAnimation<Color>(
+                          valueColor: AlwaysStoppedAnimation<Color>(
                               (_timerStatue != TimerStatus.finished)
-                                  ? CircularProgressIndicatorValueColor
-                                  : CircularProgressIndicatorDoneColor),
+                                  ? circularProgressIndicatorValueColor
+                                  : circularProgressIndicatorDoneColor),
                           semanticsLabel: 'Counting down',
                           semanticsValue:
                               '$_restTimerDurationInSeconds seconds left',
